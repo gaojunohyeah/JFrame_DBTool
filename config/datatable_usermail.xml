@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="usermail" comment="用户个人邮件信息">
+    <column name="uid" type="number" length="20" comment="角色唯一ID" notNull="true">0</column>
+    <column name="platid" type="string" length="30" comment="平台ID"
+            notNull="true"></column>
+    <column name="subject" type="string" length="20" comment="邮件主题" notNull="true"></column>
+    <column name="content" type="string" length="300" comment="邮件正文"></column>
+    <column name="issend" type="number" length="5" comment="是否是发件(1发信(发送箱) 0收信)">0</column>
+    <column name="targetid" type="number" length="20" comment="另一方id(0为系统邮件)"></column>
+    <column name="starttime" type="number" length="13" comment="邮件开始时间">0</column>
+    <column name="endtime" type="number" length="13" comment="邮件结束时间">0</column>
+    <column name="isread" type="number" length="5" comment="是否已读(1已读 0未读)">0</column>
+    <column name="mailtype" type="number" length="5" comment="邮件类型(1普通 2邀请邮件 3战报 4系统奖励)"></column>
+    <column name="mailinfo" type="table" length="100" comment="邮件额外信息">{}</column>
+</table>

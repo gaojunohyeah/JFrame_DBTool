@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="userbuilding" comment="用户建筑信息表" defaultKey="false">
+    <column name="uid" type="number" length="20" comment="唯一ID"
+            notNull="true" unique="true">0</column>
+    <column name="platid" type="string" length="30" comment="平台ID"
+            notNull="true"></column>
+    <column name="index1" type="table" length="10" comment="基座1(第一个数字建筑ID，第二个为建筑等级)">{0,0}</column>
+    <column name="index2" type="table" length="10" comment="基座2">{0,0}</column>
+    <column name="index3" type="table" length="10" comment="基座3">{0,0}</column>
+    <column name="index4" type="table" length="10" comment="基座4">{0,0}</column>
+    <column name="index5" type="table" length="10" comment="基座5">{0,0}</column>
+    <column name="index6" type="table" length="10" comment="基座6">{0,0}</column>
+    <column name="index7" type="table" length="10" comment="基座7">{0,0}</column>
+    <column name="index8" type="table" length="10" comment="基座8">{0,0}</column>
+    <column name="index9" type="table" length="10" comment="基座9">{0,0}</column>
+    <column name="index10" type="table" length="10" comment="基座10">{0,0}</column>
+    <column name="index11" type="table" length="10" comment="基座11">{0,0}</column>
+    <column name="index12" type="table" length="10" comment="基座12">{0,0}</column>
+    <column name="index13" type="table" length="10" comment="基座13">{0,0}</column>
+    <column name="index14" type="table" length="10" comment="基座14">{0,0}</column>
+    <column name="index15" type="table" length="10" comment="基座15">{0,0}</column>
+    <column name="index16" type="table" length="10" comment="基座16">{0,0}</column>
+    <column name="index17" type="table" length="10" comment="基座17">{0,0}</column>
+    <column name="index18" type="table" length="10" comment="基座18">{0,0}</column>
+    <column name="index19" type="table" length="10" comment="基座19">{0,0}</column>
+    <column name="index20" type="table" length="10" comment="基座20">{0,0}</column>
+    <column name="index21" type="table" length="10" comment="基座21">{0,0}</column>
+    <column name="wallDef" type="table" length="20"
+            comment="城防信息(1当前城防值，2最后增加城防时间，3当日增加城防次数)">{0,0,0}</column>
+</table>

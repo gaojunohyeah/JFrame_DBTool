@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="userhero" comment="用户英雄信息表">
+    <column name="uid" type="number" length="20" comment="角色唯一ID"
+            notNull="true">0</column>
+    <column name="platid" type="string" length="30" comment="平台ID"
+            notNull="true">0</column>
+    <column name="beanId" type="number" length="10" comment="配置ID"
+            notNull="true">0</column>
+    <column name="level" type="number" length="10" comment="等级">1</column>
+    <column name="breakLv" type="number" length="10" comment="突破等级">0</column>
+    <column name="medalLv" type="number" length="10" comment="勋级">0</column>
+    <column name="state" type="number" length="5" comment="状态(空闲，出征中等)">1</column>
+</table>

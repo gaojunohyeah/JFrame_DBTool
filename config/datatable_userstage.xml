@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="userstage" comment="用户关卡信息表" defaultKey="false">
+    <column name="uid" type="number" length="20" comment="角色唯一ID" notNull="true">0</column>
+    <column name="stagestars" type="table" length="1000" comment="星级" notNull="true">{}</column>
+    <column name="usedtimes" type="table" length="1000" comment="使用挑战次数" notNull="true">{}</column>
+    <column name="buytimes"  type="table" length="1000" comment="购买挑战次数" notNull="true">{}</column>
+    <column name="buytime" type="table" length="1500" comment="最后一次购买时间">{}</column>
+    <column name="chapstars" type="table" length="1500" comment="章节累计星级">{}</column>
+    <column name="isfirst" type="table" length="1500" comment="是否领取首胜奖励">{}</column>
+</table>

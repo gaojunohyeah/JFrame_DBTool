@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="userformation" comment="用户预设快速阵型信息表" defaultKey="false">
+    <column name="uid" type="number" length="20" comment="角色唯一ID"
+            notNull="true">0</column>
+    <column name="platid" type="string" length="30" comment="平台ID"
+            notNull="true">0</column>
+    <!--
+        index 阵型位置(1-6号位)
+        tankId 坦克唯一ID
+        heroId 将领唯一ID
+        partsId 所有配件的ID
+    -->
+    <column name="formation1" type="table" length="3000" comment="阵型1"
+            notNull="true">{{index=1,tankId=0,heroId=0,partsId={}}}</column>
+    <column name="formation2" type="table" length="3000" comment="阵型2"
+            notNull="true">{{index=1,tankId=0,heroId=0,partsId={}}}</column>
+    <column name="formation3" type="table" length="3000" comment="阵型3"
+            notNull="true">{{index=1,tankId=0,heroId=0,partsId={}}}</column>
+    <column name="formation4" type="table" length="3000" comment="阵型4"
+            notNull="true">{{index=1,tankId=0,heroId=0,partsId={}}}</column>
+    <column name="formation5" type="table" length="3000" comment="阵型5"
+            notNull="true">{{index=1,tankId=0,heroId=0,partsId={}}}</column>
+    <column name="formation6" type="table" length="3000" comment="阵型6"
+            notNull="true">{{index=1,tankId=0,heroId=0,partsId={}}}</column>
+</table>

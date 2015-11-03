@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="plataction" comment="平台用户行为表" defaultKey="false">
+    <column name="uid" type="number" length="20" comment="唯一ID"
+            notNull="true" unique="true">0</column>
+    <column name="platid" type="string" length="30" comment="平台ID"
+            notNull="true"></column>
+    <column name="payTime" type="number" length="13" comment="最后充值时间">0</column>
+    <column name="totalStone" type="number" length="20" comment="历史总rmb货币">0</column>
+    <column name="totalPayNum" type="number" length="10" comment="历史总充值次数">0</column>
+    <column name="ips" type="string" length="120" comment="最后7次登录IP"></column>
+    <column name="createTime" type="number" length="13" comment="创建时间">0</column>
+    <column name="deviceID" type="string" length="40" comment="建号设备ID"></column>
+    <column name="device" type="string" length="20" comment="建号设备类型"></column>
+    <column name="loginIp" type="string" length="20" comment="最后登录IP"></column>
+    <column name="loginTime" type="number" length="13" comment="最后登录时间">0</column>
+    <column name="logoutTime" type="number" length="13" comment="最后登出时间">0</column>
+</table>

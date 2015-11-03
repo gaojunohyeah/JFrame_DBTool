@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="userbuff" comment="用户buff表">
+    <column name="uid" type="number" length="20" comment="角色唯一ID"
+            notNull="true" unique="true">0</column>
+    <column name="platid" type="string" length="30" comment="平台ID"
+            notNull="true"></column>
+    <column name="effectId" type="number" length="10" comment="buff效果ID">0</column>
+    <column name="effectValue" type="number" length="10" comment="buff效果值">0</column>
+    <column name="effectTime" type="number" length="13" comment="buff效果结束时间">0</column>
+</table>

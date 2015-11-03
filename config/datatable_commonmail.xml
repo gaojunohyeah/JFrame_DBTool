@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="commonmail" comment="全服邮件信息" isAll="true">
+    <column name="subject" type="string" length="20" comment="邮件主题" notNull="true"></column>
+    <column name="content" type="string" length="300" comment="邮件正文"></column>
+    <column name="starttime" type="number" length="13" comment="邮件开始时间">0</column>
+    <column name="endtime" type="number" length="13" comment="邮件结束时间">0</column>
+    <column name="rewardtype" type="number" length="5" comment="邮件奖励类型(1普通 2附件)" notNull="true">1</column>
+    <column name="rewardinfo" type="table" length="100" comment="邮件奖励信息" notNull="true">{}</column>
+    <column name="state" type="number" length="5" comment="邮件状态(1开启 0关闭)" notNull="true">1</column>
+    <index name="starttime,endtime,state"></index>
+</table>

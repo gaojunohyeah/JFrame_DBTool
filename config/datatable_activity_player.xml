@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="activityplayer" comment="活动玩家信息表">
+    <column name="uid" type="number" length="20" comment="玩家uid"></column>
+    <column name="acttype" type="number" length="5" comment="活动类型"></column>
+    <column name="actinfo" type="table" length="255" comment="活动信息">{}</column>
+    <column name="lasttime" type="number" length="13" comment="最后活动时间"></column>
+</table>

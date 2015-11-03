@@ -1,0 +1,24 @@
+1.玩家信息表为userinfo,主键id
+2.其他玩家数据表关联userinfo主键的字段统一命名uid
+3.所有数据库表的主键统一为id，类型为number (该字段不需要配置，默认生成)
+4.主键只能选择id或者uid，如果不想用id，则需要再table节点上添加defaultKey="false"属性，
+  则uid会成为主键，并且需要自行配置uid字段，类型number
+5.公共表，即非玩家数据库，可在table节点添加isAll="true"属性，会自动生成获取model和公共锁方法
+6.index标签代表索引，玩家数据表uid默认作为索引，如需其他索引，则需要手动添加index标签。
+  属性name填充添加索引的字段名，半角逗号","分割
+6.所有数据库表的其他默认生成的字段：
+  update_at 最后更新时间
+
+
+嵌套example:
+<column name="flag" type="table" comment="额外标识">
+  <field name="event" type="table" comment="事件"></field>
+  <field name="daily_award" type="number" comment="日常奖励">0</field>
+  <field name="daily_lottery" type="table" comment="每日抽奖信息">
+      {d1={ts=0,num=0},d2={ts=0,num=0}}
+  </field>
+  <field name="daily_honors" type="number" comment="honors">0</field>
+  <field name="daily_buy_energy" type="table" comment="honors">
+      {ts=0,num=0}
+  </field>
+</column>

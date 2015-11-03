@@ -1,0 +1,36 @@
+--
+--  {{ extName }}Manager.lua
+--
+--  {{ tableBean.comment }} 扩展
+--  Created by auto tools.
+--
+--
+module(...,package.seeall)
+
+local BaseManager     = require("mvc.framework.BaseManager")
+local {{ extName }}Manager = class("{{ extName }}Manager", BaseManager)
+
+function {{ extName }}Manager:ctor()
+	self.MODEL_KEY = MODEL_{{ extName.upper() }}
+end
+{% if tableBean.isAll %}
+-- 获取对应数据model
+function {{ extName }}Manager:getModel()
+	local l_model = require ('game.model.'..self.MODEL_KEY)
+
+	return l_model["model_"..self.MODEL_KEY]()
+end
+
+-- 获取锁
+function {{ extName }}Manager:{{ extName.lower() }}Lock(id)
+	return commonLock(id or 0, self.MODEL_KEY)
+end
+
+-- 锁移除
+function {{ extName }}Manager:{{ extName.lower() }}Unlock(id)
+	return commonUnlock(id or 0, self.MODEL_KEY)
+end
+{% endif %}
+return {{ extName }}Manager
+
+

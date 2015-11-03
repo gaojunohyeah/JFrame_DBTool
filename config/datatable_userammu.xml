@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="userammu" comment="用户弹药表" defaultKey="false">
+    <column name="uid" type="number" length="20" comment="唯一ID"
+            notNull="true" unique="true">0</column>
+    <column name="platid" type="string" length="30" comment="平台ID"
+            notNull="true"></column>
+    <column name="defaultAmmu" type="number" length="10" comment="默认弹药ID"></column>
+    <!-- 格式:
+    {
+        ammuId1:ammuNum1,
+        ammuId2:ammuNum2,
+        ...
+    }
+    -->
+    <column name="ammu" type="table" length="200" comment="弹药信息">{}</column>
+</table>

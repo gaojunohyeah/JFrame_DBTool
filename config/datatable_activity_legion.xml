@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="activitylegion" comment="活动军团信息表" isAll="true">
+    <column name="legionid" type="number" length="20" comment="军团id"></column>
+    <column name="acttype" type="number" length="5" comment="活动类型"></column>
+    <column name="actinfo" type="table" length="255" comment="活动信息">{}</column>
+    <column name="lasttime" type="number" length="13" comment="最后活动时间"></column>
+    <index name="legionid"></index>
+    <index name="legionid,acttype"></index>
+</table>

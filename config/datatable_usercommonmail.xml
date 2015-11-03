@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="usercommonmail" comment="用户活动信息" defaultKey="false">
+    <column name="uid" type="number" length="20" comment="角色唯一ID" notNull="true">0</column>
+    <column name="platid" type="string" length="30" comment="平台ID"
+            notNull="true"></column>
+    <!-- 格式：邮件id:状态 (状态：0删除 1已读)-->
+    <column name="systemmail" type="table" length="300" comment="系统邮件标识" notNull="true">{}</column>
+    <column name="legionmail" type="table" length="500" comment="军团邮件标识" notNull="true">{}</column>
+</table>

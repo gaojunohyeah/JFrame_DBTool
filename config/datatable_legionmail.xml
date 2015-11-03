@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="legionmail" comment="军团邮件信息" isAll="true">
+    <column name="legionid" type="number" length="20" comment="军团id" notNull="true"></column>
+    <column name="senderid" type="number" length="20" comment="发件人id" notNull="true"></column>
+    <column name="subject" type="string" length="20" comment="邮件主题" notNull="true"></column>
+    <column name="content" type="string" length="300" comment="邮件正文"></column>
+    <column name="starttime" type="number" length="13" comment="邮件开始时间">0</column>
+    <index name="legionid"></index>
+</table>

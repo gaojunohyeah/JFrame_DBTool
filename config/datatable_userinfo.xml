@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="userinfo" comment="用户信息表" defaultKey="false">
+    <column name="uid" type="number" length="20" comment="唯一ID"
+            notNull="true" unique="true">0</column>
+    <column name="platid" type="string" length="30" comment="平台ID"
+            notNull="true"></column>
+    <column name="username" type="string" length="50" comment="用户名"
+            notNull="true" unique="true"></column>
+    <column name="password" type="string" length="20" comment="密码"></column>
+    <column name="nickname" type="string" length="20"
+            notNull="true" comment="角色名"></column>
+    <column name="img" type="string" length="20" comment="头像"></column>
+    <column name="level" type="number" length="10" comment="等级">1</column>
+    <column name="exp" type="number" length="20" comment="经验">0</column>
+    <column name="stone" type="number" length="13" comment="rmb货币">0</column>
+    <column name="gmStone" type="number" length="13" comment="GMrmb货币">0</column>
+    <column name="vip" type="number" length="10" comment="vip等级">0</column>
+    <column name="vipPoint" type="number" length="10" comment="vip点数">0</column>
+    <column name="stp" type="number" length="10" comment="体力">0</column>
+    <column name="lastStpTime" type="number" length="13" comment="最后回复体力时间">0</column>
+    <column name="freeRecruitTime" type="number" length="13" comment="最后免费单抽时间">0</column>
+    <column name="freeTenRecruitTime" type="number" length="13" comment="最后免费十连时间">0</column>
+    <column name="gold" type="number" length="15" comment="资源1(金)">0</column>
+    <column name="iron" type="number" length="15" comment="资源2(铁)">0</column>
+    <column name="oil" type="number" length="15" comment="资源3(油)">0</column>
+    <column name="ammo" type="number" length="15" comment="资源4(弹药)">0</column>
+    <column name="fighting" type="number" length="15" comment="战斗力">0</column>
+    <!--
+    不断增加中...
+    flag = {
+        awardTime : 0,  最后同步领奖中心时间
+    }
+    -->
+    <column name="flag" type="table" length="255" comment="一些特殊标志">{}</column>
+    <column name="mapX" type="number" length="10" comment="地图X坐标">0</column>
+    <column name="mapY" type="number" length="10" comment="地图Y坐标">0</column>
+    <index name="nickname"></index>
+    <index name="username,password"></index>
+</table>

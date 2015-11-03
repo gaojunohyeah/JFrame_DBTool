@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="userqueue" comment="用户队列表">
+    <column name="uid" type="number" length="20" comment="唯一ID"
+            notNull="true"></column>
+    <column name="platid" type="string" length="30" comment="平台ID"
+            notNull="true"></column>
+    <column name="queueId" type="number" length="10" comment="队列配置ID"
+            notNull="true"></column>
+    <column name="queueType" type="number" length="10" comment="队列类型"
+            notNull="true"></column>
+    <!--
+        队列类型：   建筑队列        targetId 建筑基座id(indexId)
+                    坦克进阶队列    targetId 坦克唯一id
+    -->
+    <column name="targetId" type="number" length="20" comment="目标ID"
+            notNull="true"></column>
+    <column name="expireTime" type="number" length="13" comment="队列过期时间">0</column>
+    <column name="finishTime" type="number" length="13" comment="队列完成时间">0</column>
+    <column name="isFinish" type="number" length="1" comment="队列是否完成(1完成 0未完成)">0</column>
+    <column name="param" type="table" length="255" comment="队列参数">
+        {startTime=0,endTime=0}
+    </column>
+</table>
