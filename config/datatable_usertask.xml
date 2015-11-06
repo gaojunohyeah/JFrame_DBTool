@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<table name="usertask" comment="用户活动信息" defaultKey="false">
-    <column name="uid" type="number" length="20" comment="角色唯一ID" notNull="true">0</column>
-    <column name="mainid" type="table" length="50" comment="主线任务" notNull="true">{}</column>
-    <column name="dailyid" type="table" length="1000" comment="日常任务" notNull="true">{}</column>
-    <column name="dailytime" type="string" length="20" comment="日常任务上次刷新时间" notNull="true">0</column>
-    <column name="dailydata" type="table" length="500" comment="任务资源和操作数据" notNull="true">{}</column>
-    <column name="maindata" type="table" length="500" comment="任务资源和操作数据" notNull="true">{}</column>
-</table>

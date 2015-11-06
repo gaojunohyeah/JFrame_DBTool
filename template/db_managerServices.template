@@ -1,13 +1,10 @@
---
---  ManagerServices.lua
---
---  manager管理类
---  Created by auto tools.
---
---
-module(...,package.seeall)
+/**
+ * 管理器实例类
+ * Created by auto tool.
+ */
 
-{% for name in dbNames %}
-{{ name }}Manager = require("game.manager.{{ name.capitalize() }}Manager"):new()
+'use strict';
+
+{% for name in dbNames -%}
+exports.{{ name }}Manager = require(config.serverRoot + '/manager/{{ name }}Manager');
 {%- endfor %}
-

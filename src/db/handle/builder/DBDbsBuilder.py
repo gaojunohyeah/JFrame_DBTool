@@ -4,11 +4,11 @@
 
 import BaseBuilder
 
-class DBModelNameBuilder(BaseBuilder.BaseBuilder):
+class DBDbsBuilder(BaseBuilder.BaseBuilder):
     def __init__(self, tableBean, env):
-        self.templateFile = "db_modelName.template"
-        self.genPath = "../out/mvc/"
-        fileName = "ModelNames.lua"
+        self.templateFile = "db_dbs.template"
+        self.genPath = "../out/app/service/"
+        fileName = "dbs.lua"
         BaseBuilder.BaseBuilder.__init__(self, tableBean, self.templateFile, self.genPath, fileName, env)
 
     def buildDBFile(self):

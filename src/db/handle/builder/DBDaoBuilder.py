@@ -5,11 +5,11 @@
 import BaseBuilder
 
 
-class DBManagerBuilder(BaseBuilder.BaseBuilder):
+class DBDaoBuilder(BaseBuilder.BaseBuilder):
     def __init__(self, tableBean, env):
-        self.templateFile = "db_manager.template"
-        self.genPath = "../out/app/manager/"
-        fileName = tableBean.name + "Manager.lua"
+        self.templateFile = "db_dao.template"
+        self.genPath = "../out/app/dao/"
+        fileName = tableBean.name.capitalize() + "Dao.lua"
         BaseBuilder.BaseBuilder.__init__(self, tableBean, self.templateFile, self.genPath, fileName, env)
 
     def buildDBFile(self):

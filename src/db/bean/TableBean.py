@@ -12,17 +12,5 @@ class TableBean(object):
     def setColumns(self, columns):
         self.columns = columns
 
-    def setIsallKey(self, isAll):
-        if "true" == isAll:
-            self.isAll = True
-        else:
-            self.isAll = False
-
-    def setDefaultKey(self, defauleKey):
-        if "false" == defauleKey:
-            self.defaultKey = False
-        else:
-            self.defaultKey = True
-
     def setIndexs(self, indexs):
         self.indexs = indexs

@@ -25,71 +25,22 @@ def getXmlFileList(xmlPath):
 
     return xmlFiles
 
-
-# 加载table类型字段的子字段
-def loadFieldNode(node):
-    type = node.getAttribute('type')
-    name = node.getAttribute('name')
-    comment = node.getAttribute('comment')
-
-    value = None
-    if "table" == type:
-        if node.childNodes:
-            value = node.childNodes[0].nodeValue.strip()
-        else:
-            value = {}
-    elif "number" == type:
-        if node.childNodes:
-            value = node.childNodes[0].nodeValue
-        else:
-            value = 0
-    elif "string" == type:
-        if node.childNodes:
-            value = node.childNodes[0].nodeValue.strip()
-        else:
-            value = ""
-
-    # 初始化对象
-    field = FieldBean.FieldBean(type, name, comment, value)
-    return field
-
-
 # 加载字段
 def loadColumnNode(node):
-    type = node.getAttribute('type')
     name = node.getAttribute('name')
-    comment = node.getAttribute('comment')
+    field = node.getAttribute('field')
+    type = node.getAttribute('type')
     length = node.getAttribute('length')
-    notNull = node.getAttribute('notNull')
+    comment = node.getAttribute('comment')
+    value = node.getAttribute('value')
+    allowNull = node.getAttribute('allowNull')
     unique = node.getAttribute('unique')
-
-    value = None
-    fields = []
-    if "table" == type:
-        if node.childNodes:
-            value = node.childNodes[0].nodeValue.strip()
-        else:
-            value = {}
-        # fieldNodes = node.getElementsByTagName("field")
-        # for fieldNode in fieldNodes:
-        #     # 加载子字段
-        #     field = loadFieldNode(fieldNode)
-        #     fields.append(field)
-    elif "number" == type:
-        if node.childNodes:
-            value = node.childNodes[0].nodeValue
-        else:
-            value = 0
-    elif "string" == type:
-        if node.childNodes:
-            value = node.childNodes[0].nodeValue.strip()
-        else:
-            value = ""
+    iskey = node.getAttribute('iskey')
+    autoinc = node.getAttribute('autoinc')
 
     # 初始化对象
-    column = ColumnBean.ColumnBean(type, name, comment, fields, value, length)
-    column.setCanNull(notNull)
-    column.setIsUnique(unique)
+    column = ColumnBean.ColumnBean(name, field, type, length, comment,
+                                   value, allowNull, unique, iskey, autoinc)
     return column
 
 
@@ -103,12 +54,8 @@ def loadDBFile(path):
     # 获取表信息
     name = root.getAttribute('name')
     comment = root.getAttribute('comment')
-    pk = root.getAttribute('defaultKey')
-    isAll = root.getAttribute('isAll')
 
     tableBean = TableBean.TableBean(name, comment)
-    tableBean.setDefaultKey(pk)
-    tableBean.setIsallKey(isAll)
 
     # 表名唯一性验证
     if TableNameDic.get(name):
@@ -130,14 +77,14 @@ def loadDBFile(path):
 
     # 获取表索引节点
     indexs = []
-    # 默认玩家表索引
-    if not isAll and not pk:
-        indexs.append(["uid"])
     # 手动添加的索引
     childs = root.getElementsByTagName("index")
     for child in childs:
         inames = child.getAttribute('name').split(",")
-        indexs.append(inames)
+        iunique = child.getAttribute('unique')
+
+        index = IndexBean.IndexBean(inames, iunique)
+        indexs.append(index)
     tableBean.setIndexs(indexs)
     # print indexs
 

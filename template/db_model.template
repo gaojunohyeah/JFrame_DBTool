@@ -1,217 +1,56 @@
---
---  {{ tableBean.name }}.lua
---
---  {{ tableBean.comment }}
---  Created by auto tools.
---
---
-module(...,package.seeall)
+/**
+ * {{ tableBean.name }}.js
+ * Created by auto tool.
+ */
 
-local Table         = require("mvc.db.Table")
-local Query         = require("mvc.db.class.query")
-local Fields        = require("mvc.db.tools.fields")
-local modelManager  = require("mvc.ManagerServices").{{ tableBean.name }}Manager
+'use strict';
 
-primaryKey = "{%- if defaultPK %}id{% else %}uid{% endif %}"
-modelName = MODEL_{{ tableBean.name.upper() }}
+var Sequelize = require('sequelize');
 
-local {{ tableBean.name }} = Table({
-    __tablename__ = "{{ tableBean.name }}",
-    __tableindex__ = {
-        {%- for index in tableBean.indexs -%}
-        {
-        {%- for name in index -%}
-        "{{ name }}"
-        {%- if loop.index < loop.length -%},{%- endif -%}
-        {%- endfor -%}
-        }
-        {%- if loop.index < loop.length -%},{%- endif -%}
-        {%- endfor -%}
-    },
-    {%- if defaultPK %}
-    id = Fields.PrimaryField({auto_increment = false, max_length = 20, max_length = 20, unique = true}),
-    {%- endif %}
-    {%- for column in tableBean.columns %}
-    {{ column.name }} = Fields.
-    {%- if not defaultPK and "uid" == column.name -%}
-    PrimaryField({auto_increment = false,
-    {%- elif "number"==column.type -%}
-    IntegerField({
-    {%- else -%}
-    CharField({
-    {%- endif -%}
-    max_length = {{ column.length }}
-    {%- if "true" == column.canNull -%}
-    , null = {{ column.canNull }}
-    {%- endif -%}
-    {%- if "true" == column.isUnique -%}
-    , unique = {{ column.isUnique }}
-    {%- endif -%}
-    }),
-    {%- endfor %}
-    updated_at = Fields.IntegerField({max_length = 13}),
-})
+function db_init(sequelize) {
+  // 用户信息表
+  var {{ tableBean.name }} = sequelize.define('{{ tableBean.name.lower() }}', {
+    {% for column in tableBean.columns  %}
+      {{ column.name }}: {
+        type: Sequelize.
+        {%- if 'string' == column.type -%}
+        STRING({{ column.length }})
+        {%- elif 'int' == column.type -%}
+        INTEGER({{ column.length }})
+        {%- elif 'long' == column.type -%}
+        BIGINT({{ column.length }})
+        {%- endif -%},
+        allowNull: {{ column.allowNull }},
+        unique: {{ column.unique }},
+        field: "{{ column.field }}",
+        {% if not column.autoinc -%}
+        defaultValue: {% if 'string' == column.type -%}"{{ column.value }}"{%- else -%}{{ column.value }}{%- endif %},
+        {%- endif %}
+        comment: "{{ column.comment }}",
+        {% if column.iskey -%}
+        primaryKey: {{ column.iskey }},
+        autoIncrement: {{ column.autoinc }},
+        {%- endif %}
+      },
+    {% endfor %}
+  }, {
+    freezeTableName: true,
+    timestamps: true,
+    indexes: [
+      {% for index in tableBean.indexs -%}
+      {
+        unique: {{ index.unique }},
+        fields: [{% for name in index.names %}'{{ name }}',{% endfor %}]
+      },
+      {% endfor %}
+    ],
+  });
 
-function model_{{ tableBean.name }}()
-    local self = {
-        primaryKey = primaryKey,
-        modelName = modelName,
-        keys = {
-            {%- if defaultPK %}
-            "id",
-            {%- endif %}
-            {%- for column in tableBean.columns %}
-            "{{ column.name }}",
-            {%- endfor %}
-            "updated_at",
-        },
-        data = {},
-        operation = {
-            data_insert = {},
-            data_update = {},
-            data_delete = {},
-        },
-        dataNum = 0,
-    }
+  {{ tableBean.name }}.sync();
 
-    -- 初始化一个新的数据
-    function self.initNew({%- if defaultPK %}id, {% endif %}uid)
-        if not self.data then
-            self.data = {}
-        end
-        local id = tostring({%- if defaultPK %}id{% else %}uid{% endif %})
-        self.data[id] = {}
-        {%- if defaultPK %}
-        -- id,唯一主键
-        self.data[id]["id"] = tonumber(id)
-        {% endif %}
+  return UserInfo;
+}
 
-        {%- for column in tableBean.columns %}
-        -- {{ column.comment }}
-        {%- if "uid" == column.name %}
-        self.data[id]["{{ column.name }}"] = tonumber(uid)
-        {%- else %}
-            {%- if "string" == column.type %}
-        self.data[id]["{{ column.name }}"] = "{{ column.value }}"
-            {%- elif "number" == column.type %}
-        self.data[id]["{{ column.name }}"] = {{ column.value }}
-            {%- else %}
-        self.data[id]["{{ column.name }}"] = {{ column.value }}
-        {#-{
-            {%- for field in column.fields -%}
-            {%- if "string" == field.type %}
-            {{ field.name }} = "{{ field.value }}",
-            {%- else %}
-            {{ field.name }} = {{ field.value }},
-            {%- endif -%}
-            {%- endfor %}
-        }#}
-            {%- endif -%}
-        {% endif %}
-        {%- endfor %}
-        -- 最后更新时间
-        self.data[id]["updated_at"] = 0
-
-        return self.data[id]
-    end
-
-    -- 绑定数据库获取到的数据
-    function self.bind(uObjs, data)
-        self.data = {}
-        if type(data) ~= 'table' then
-            return false
-        end
-
-        local num = 0
-        for id,val in pairs(data) do
-            self.data[id] = {}
-            {%- if defaultPK %}
-            self.data[id]["id"] = tonumber(val["id"]) or 0
-            {% endif %}
-            {%- for column in tableBean.columns -%}
-            {%- if "string" == column.type %}
-            self.data[id]["{{ column.name }}"] = val["{{ column.name }}"] or "{{ column.value }}"
-            {%- elif "number" == column.type %}
-            self.data[id]["{{ column.name }}"] = tonumber(val["{{ column.name }}"]) or {{ column.value }}
-            {%- else %}
-            self.data[id]["{{ column.name }}"] = val["{{ column.name }}"] or {{ column.value }}
-            {#-if not self.data[id]["{{ column.name }}"] then
-                self.data[id]["{{ column.name }}"] = {
-                    {%- for field in column.fields -%}
-                    {%- if "string" == field.type %}
-                    {{ field.name }} = "{{ field.value }}",
-                    {%- else %}
-                    {{ field.name }} = {{ field.value }},
-                    {%- endif -%}
-                    {%- endfor %}
-                }
-            end#}
-            {%- endif -%}
-            {%- endfor %}
-            self.data[id]["updated_at"] = tonumber(val["updated_at"]) or 0
-
-            num = num + 1
-        end
-
-        self.dataNum = num
-
-        modelManager:bind(uObjs, self)
-        return true
-    end
-
-    -- 获取表所有字段key
-    function self.getKeys()
-        local data = modelManager:getKeys(self.keys)
-
-        return data
-    end
-
-    -- 获取表数据，指定ID则返回指定ID的数据
-    function self.getData(id)
-        if id and self.data[tostring(id)] then
-            return self.data[tostring(id)]
-        else
-            return nil
-        end
-    end
-
-    function self.addSave(userinfo)
-        local id = tostring(userinfo.{%- if defaultPK %}id{% else %}uid{% endif %})
-        self.data[id] = userinfo
-        self.operation.data_insert[id] = userinfo
-
-        self.dataNum = self.dataNum + 1
-    end
-
-    function self.addUpdate(userinfo)
-        local id = tostring(userinfo.{%- if defaultPK %}id{% else %}uid{% endif %})
-        self.data[id] = userinfo
-        self.operation.data_update[id] = userinfo
-    end
-
-    function self.addDelete(userinfo)
-        local id = tostring(userinfo.{%- if defaultPK %}id{% else %}uid{% endif %})
-        self.data[id] = nil
-        self.operation.data_delete[id] = userinfo
-
-        self.dataNum = self.dataNum - 1
-    end
-
-    -- 获取数据库表结构对象，可用于关联查询时使用
-    function self.getTable()
-        return {{ tableBean.name }}
-    end
-
-    -- 获取查询对象，可以构造查询条件进行数据查询
-    function self.getSelectObj()
-        return {{ tableBean.name }}.get
-    end
-
-    -- 构造query对象，拥有update，delete等数据库操作方法
-    function self.buildQueryObj(data)
-        return Query({{ tableBean.name }}.get.own_table, data)
-    end
-
-    return self
-end
-
+exports.{{ tableBean.name }} = function (sequelize) {
+  return db_init(sequelize);
+};

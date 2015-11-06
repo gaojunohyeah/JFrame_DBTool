@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 # __author__ = 'gaojun'
 
-import sys
-sys.path.append("..")
-
 import os
 import shutil
 
@@ -34,6 +31,10 @@ def DBFileBuild(temPath, tableBeans):
         if not builder.buildDBFile():
             print "database build error in DBModelBuilder, tableName = " + tableBean.name
 
+        builder = DBDaoBuilder.DBDaoBuilder(tableBean, env)
+        if not builder.buildDBFile():
+            print "database build error in DBDaoBuilder, tableName = " + tableBean.name
+
         builder = DBManagerBuilder.DBManagerBuilder(tableBean, env)
         if not builder.buildDBFile():
             print "database build error in DBExtendBuilder, tableName = " + tableBean.name
@@ -42,6 +43,6 @@ def DBFileBuild(temPath, tableBeans):
     if not builder.buildDBFile():
         print "database build error in DBManagerServicesBuilder"
 
-    builder = DBModelNameBuilder.DBModelNameBuilder(tableNames, env)
+    builder = DBDbsBuilder.DBDbsBuilder(tableNames, env)
     if not builder.buildDBFile():
-        print "database build error in DBModelNameBuilder"
+        print "database build error in DBDbsBuilder"

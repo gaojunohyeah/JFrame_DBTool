@@ -1,0 +1,23 @@
+/**
+ * {{ tableBean.name }}Dao.js
+ * Created by auto tool.
+ */
+
+'use strict';
+var util = require('util');
+var BaseDao = require(config.serverRoot + '/dao/base/BaseDao');
+
+/**
+ * {{ tableBean.comment }}数据库层操作类
+ *
+ * @constructor
+ */
+var {{ tableBean.name }}Dao = function ({{ tableBean.name }}Model) {
+  this.model = {{ tableBean.name }}Model;
+
+};
+
+// 添加继承
+util.inherits({{ tableBean.name }}Dao, BaseDao);
+
+module.exports = {{ tableBean.name }}Dao;
