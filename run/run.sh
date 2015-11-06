@@ -1,21 +1,22 @@
 #!/bin/bash
-toolPath='/Users/rayjoy/gaojun/work/tank2/docs/技术工具/DBBuilderTool'
-projectPath='/Users/rayjoy/gaojun/work/tank2server/game/tank-luascripts'
+toolPath='/Users/rayjoy/gaojun/git/JFrame_DBTool'
+projectPath='/Users/rayjoy/gaojun/webstrom/JFrame'
 
-cfgPath=$toolPath'/config'
-managerPath=$projectPath'/game/manager'
-modelPath=$projectPath'/game/model'
-servicePath=$projectPath'/mvc'
+daoPath=$toolPath'/app/dao'
+managerPath=$projectPath'/app/manager'
+modelPath=$projectPath'/app/model'
+servicePath=$projectPath'/app/service'
 
 outPath=$toolPath'/out'
-outManagerPath=$outPath'/game/manager'
-outModelPath=$outPath'/game/model'
-outServicePath=$outPath'/mvc'
+outDaoPath=$outPath'/app/dao'
+outManagerPath=$outPath'/app/manager'
+outModelPath=$outPath'/app/model'
+outServicePath=$outPath'/app/service'
 
-svn update $cfgPath'/'
-svn update $managerPath'/'
-svn update $modelPath'/'
-svn update $servicePath'/'
+#svn update $daoPath'/'
+#svn update $managerPath'/'
+#svn update $modelPath'/'
+#svn update $servicePath'/'
 
 python $toolPath'/src/DBBuilder.py'
 
@@ -35,17 +36,30 @@ do
   fi
 done
 
+daoFileList=`ls $outDaoPath`
+for daoName in $daoFileList
+do
+  echo 'daoName='$daoName
+  proDaoPath=$daoPath'/'$daoName
+  if [ ! -f "$proDaoPath" ]; then
+    echo 'copy '$outDaoPath'/'$daoName' to '$proDaoPath
+    cp $outDaoPath'/'$daoName $proDaoPath
+  else
+    echo $proDaoPath' is exist, ignore'
+  fi
+done
+
 echo ''
 echo 'copy to '$modelPath
 cp $outModelPath'/'*.lua  $modelPath'/'
 
 echo ''
-echo 'copy to'$servicePath'/ManagerServicesAuto.lua'
-cp $outServicePath'/ManagerServicesAuto.lua'  $servicePath'/'
+echo 'copy to'$servicePath'/manager.lua'
+cp $outServicePath'/manager.lua'  $servicePath'/'
 
 echo ''
-echo 'copy to'$servicePath'/ModelNames.lua'
-cp $outServicePath'/ModelNames.lua'  $servicePath'/'
+echo 'copy to'$servicePath'/dbs.lua'
+cp $outServicePath'/dbs.lua'  $servicePath'/'
 echo "copy files, end...."
 
 
