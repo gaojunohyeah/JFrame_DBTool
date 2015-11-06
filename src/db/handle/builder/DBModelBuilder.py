@@ -9,7 +9,7 @@ class DBModelBuilder(BaseBuilder.BaseBuilder):
     def __init__(self, tableBean, env):
         self.templateFile = "db_model.template"
         self.genPath = "../out/app/model/"
-        fileName = tableBean.name + ".lua"
+        fileName = tableBean.name + ".js"
         BaseBuilder.BaseBuilder.__init__(self, tableBean, self.templateFile, self.genPath, fileName, env)
 
     def buildDBFile(self):

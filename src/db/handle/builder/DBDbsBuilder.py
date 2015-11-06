@@ -8,7 +8,7 @@ class DBDbsBuilder(BaseBuilder.BaseBuilder):
     def __init__(self, tableBean, env):
         self.templateFile = "db_dbs.template"
         self.genPath = "../out/app/service/"
-        fileName = "dbs.lua"
+        fileName = "dbs.js"
         BaseBuilder.BaseBuilder.__init__(self, tableBean, self.templateFile, self.genPath, fileName, env)
 
     def buildDBFile(self):

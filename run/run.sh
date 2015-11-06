@@ -2,7 +2,7 @@
 toolPath='/Users/rayjoy/gaojun/git/JFrame_DBTool'
 projectPath='/Users/rayjoy/gaojun/webstrom/JFrame'
 
-daoPath=$toolPath'/app/dao'
+daoPath=$projectPath'/app/dao'
 managerPath=$projectPath'/app/manager'
 modelPath=$projectPath'/app/model'
 servicePath=$projectPath'/app/service'
@@ -17,10 +17,8 @@ outServicePath=$outPath'/app/service'
 #svn update $managerPath'/'
 #svn update $modelPath'/'
 #svn update $servicePath'/'
-git pull $daoPath'/'
-git pull $managerPath'/'
-git pull $modelPath'/'
-git pull $servicePath'/'
+git pull $toolPath
+git pull $projectPath
 
 python $toolPath'/src/DBBuilder.py'
 
@@ -55,15 +53,15 @@ done
 
 echo ''
 echo 'copy to '$modelPath
-cp $outModelPath'/'*.lua  $modelPath'/'
+cp $outModelPath'/'*.js  $modelPath'/'
 
 echo ''
-echo 'copy to'$servicePath'/manager.lua'
-cp $outServicePath'/manager.lua'  $servicePath'/'
+echo 'copy to'$servicePath'/manager.js'
+cp $outServicePath'/manager.js'  $servicePath'/'
 
 echo ''
-echo 'copy to'$servicePath'/dbs.lua'
-cp $outServicePath'/dbs.lua'  $servicePath'/'
+echo 'copy to'$servicePath'/dbs.js'
+cp $outServicePath'/dbs.js'  $servicePath'/'
 echo "copy files, end...."
 
 

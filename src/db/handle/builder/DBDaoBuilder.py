@@ -9,7 +9,7 @@ class DBDaoBuilder(BaseBuilder.BaseBuilder):
     def __init__(self, tableBean, env):
         self.templateFile = "db_dao.template"
         self.genPath = "../out/app/dao/"
-        fileName = tableBean.name.capitalize() + "Dao.lua"
+        fileName = tableBean.name + "Dao.js"
         BaseBuilder.BaseBuilder.__init__(self, tableBean, self.templateFile, self.genPath, fileName, env)
 
     def buildDBFile(self):

@@ -8,7 +8,7 @@ class DBManagerServicesBuilder(BaseBuilder.BaseBuilder):
     def __init__(self, tableBean, env):
         self.templateFile = "db_managerServices.template"
         self.genPath = "../out/app/service/"
-        fileName = "manager.lua"
+        fileName = "manager.js"
         BaseBuilder.BaseBuilder.__init__(self, tableBean, self.templateFile, self.genPath, fileName, env)
 
     def buildDBFile(self):
