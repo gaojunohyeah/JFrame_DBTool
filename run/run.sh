@@ -17,6 +17,10 @@ outServicePath=$outPath'/app/service'
 #svn update $managerPath'/'
 #svn update $modelPath'/'
 #svn update $servicePath'/'
+git pull $daoPath'/'
+git pull $managerPath'/'
+git pull $modelPath'/'
+git pull $servicePath'/'
 
 python $toolPath'/src/DBBuilder.py'
 
