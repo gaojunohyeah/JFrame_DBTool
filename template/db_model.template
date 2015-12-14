@@ -48,7 +48,7 @@ function db_init(sequelize) {
 
   {{ tableBean.name }}.sync();
 
-  return UserInfo;
+  return {{ tableBean.name }};
 }
 
 exports.{{ tableBean.name }} = function (sequelize) {

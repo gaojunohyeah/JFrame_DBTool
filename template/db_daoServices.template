@@ -1,0 +1,20 @@
+/**
+ * dao实例类
+ * Created by auto tool.
+ */
+
+'use strict';
+
+{% for name in dbNames -%}
+var {{ name }}Dao = require(config.serverRoot + '/dao/{{ name }}Dao');
+{% endfor %}
+
+module.exports = function (dbs) {
+  var dao = {};
+
+  {% for name in dbNames -%}
+  dao.{{ name }}Dao = new {{ name }}Dao(dbs.{{ name }});
+  {% endfor %}
+
+  return dao;
+};

@@ -43,6 +43,10 @@ def DBFileBuild(temPath, tableBeans):
     if not builder.buildDBFile():
         print "database build error in DBManagerServicesBuilder"
 
+    builder = DBDaoServicesBuilder.DBDaoServicesBuilder(tableNames, env)
+    if not builder.buildDBFile():
+        print "database build error in DBDaoServicesBuilder"
+
     builder = DBDbsBuilder.DBDbsBuilder(tableNames, env)
     if not builder.buildDBFile():
         print "database build error in DBDbsBuilder"

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="City" comment="城市信息表">
+    <column name="id" field="id" type="long" length="20" comment="唯一ID"
+            value="0" allowNull="false" unique="true" iskey="true" autoinc="true"/>
+
+    <column name="name" field="name" type="string" length="20" comment="城市名称"
+            value="" allowNull="false" unique="false"/>
+
+    <column name="area" field="area" type="int" length="5" comment="区域"
+            value="0" allowNull="true" unique="false"/>
+
+    <index name="area" unique="false"/>
+</table>

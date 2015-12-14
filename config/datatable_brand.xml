@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="Brand" comment="品牌信息表">
+    <column name="id" field="id" type="long" length="20" comment="唯一ID"
+            value="0" allowNull="false" unique="true" iskey="true" autoinc="true"/>
+    <column name="name" field="name" type="string" length="20" comment="品牌名称"
+            value="" allowNull="false" unique="false"/>
+    <column name="letter" field="letter" type="int" length="2" comment="首字母"
+            value="0" allowNull="true" unique="false"/>
+
+    <index name="letter" unique="false"/>
+</table>

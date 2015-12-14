@@ -17,8 +17,8 @@ outServicePath=$outPath'/app/service'
 #svn update $managerPath'/'
 #svn update $modelPath'/'
 #svn update $servicePath'/'
-git pull $toolPath
-git pull $projectPath
+#git pull $toolPath
+#git pull $projectPath
 
 python $toolPath'/src/DBBuilder.py'
 
@@ -62,6 +62,10 @@ cp $outServicePath'/manager.js'  $servicePath'/'
 echo ''
 echo 'copy to'$servicePath'/dbs.js'
 cp $outServicePath'/dbs.js'  $servicePath'/'
+
+echo ''
+echo 'copy to'$servicePath'/dao.js'
+cp $outServicePath'/dao.js'  $servicePath'/'
 echo "copy files, end...."
 
 

@@ -7,4 +7,4 @@
 
 {% for name in dbNames -%}
 exports.{{ name }}Manager = require(config.serverRoot + '/manager/{{ name }}Manager');
-{%- endfor %}
+{% endfor %}

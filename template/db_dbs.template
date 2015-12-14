@@ -9,8 +9,8 @@ var Sequelize = require('sequelize');
 var Redis = require('ioredis');
 
 {% for name in dbNames -%}
-var {{ name.lower() }} = require(config.serverRoot + "/model/{{ name }}")
-{%- endfor %}
+var {{ name.lower() }} = require(config.serverRoot + "/model/{{ name }}");
+{% endfor %}
 
 // mysql 连接
 function loadMysql() {
@@ -43,4 +43,4 @@ exports.sequelize = sequelize;
 // model映射
 {% for name in dbNames -%}
 exports.{{ name }} = {{ name.lower() }}.{{ name }}(sequelize);
-{%- endfor %}
+{% endfor %}

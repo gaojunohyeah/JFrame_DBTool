@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="Car" comment="出售车辆信息表">
+    <column name="id" field="id" type="long" length="20" comment="唯一ID"
+            value="0" allowNull="false" unique="true" iskey="true" autoinc="true"/>
+
+    <column name="sellId" field="sellId" type="long" length="20" comment="车主id"
+            value="0" allowNull="false" unique="false"/>
+
+    <column name="sellDesc" field="sellDesc" type="string" length="300" comment="车主描述"
+            value="" allowNull="true" unique="false"/>
+
+    <column name="appraiserId" field="appraiserId" type="long" length="20" comment="评估师id"
+            value="0" allowNull="false" unique="false"/>
+
+    <column name="appraiserDesc" field="sellDesc" type="string" length="300" comment="评估师描述"
+            value="" allowNull="true" unique="false"/>
+
+    <column name="brandId" field="brandId" type="long" length="20" comment="品牌id"
+            value="0" allowNull="false" unique="false"/>
+
+    <column name="modelId" field="modelId" type="long" length="20" comment="车辆型号id"
+            value="0" allowNull="false" unique="false"/>
+
+    <column name="price" field="price" type="long" length="20" comment="价格"
+            value="0" allowNull="false" unique="false"/>
+
+    <column name="distance" field="distance" type="int" length="10" comment="行驶里程"
+            value="0" allowNull="false" unique="false"/>
+
+    <column name="startTime" field="startTime" type="long" length="11" comment="上牌时间"
+            value="0" allowNull="true" unique="false"/>
+
+    <column name="city" field="city" type="int" length="10" comment="城市id"
+            value="0" allowNull="true" unique="false"/>
+
+    <column name="showImg" field="showImg" type="string" length="200" comment="展示图片"
+            value="" allowNull="true" unique="false"/>
+
+    <column name="tag" field="tag" type="string" length="20" comment="特殊标签"
+            value="" allowNull="true" unique="false"/>
+
+    <index name="sellId" unique="false"/>
+    <index name="appraiserId" unique="false"/>
+    <index name="city,brandId,price" unique="false"/>
+</table>

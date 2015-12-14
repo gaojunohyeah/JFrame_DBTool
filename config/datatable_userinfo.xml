@@ -17,7 +17,7 @@
     <column name="state" field="state" type="int" length="30" comment="状态(0未激活,1已激活)"
             value="0" allowNull="true" unique="false"/>
 
-    <index name="username,password" unique="true"></index>
-    <index name="email,password" unique="true"></index>
-    <index name="telephone,password" unique="true"></index>
+    <index name="username,password" unique="true"/>
+    <index name="email,password" unique="true"/>
+    <index name="telephone,password" unique="true"/>
 </table>
