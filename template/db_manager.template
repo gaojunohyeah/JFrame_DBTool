@@ -4,6 +4,8 @@
  */
 
 'use strict';
+var util = require('util');
+var BaseManager = require(config.serverRoot + '/manager/base/BaseManager');
 
 /**
  * {{ tableBean.comment }}管理器
@@ -15,5 +17,8 @@ var {{ tableBean.name }}Manager = function () {
 
 
 };
+
+// 添加继承
+util.inherits({{ tableBean.name }}Manager, BaseManager);
 
 module.exports = new {{ tableBean.name }}Manager();
