@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <table name="UserInfo" comment="用户信息表">
-    <column name="uid" field="uid" type="long" length="20" comment="唯一ID"
+    <column name="id" field="id" type="long" length="20" comment="唯一ID"
             value="0" allowNull="false" unique="true" iskey="true" autoinc="true"/>
     <column name="username" field="username" type="string" length="40" comment="用户名"
             value="" allowNull="false" unique="true"/>

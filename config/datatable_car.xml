@@ -27,8 +27,8 @@
     <column name="distance" field="distance" type="int" length="10" comment="行驶里程"
             value="0" allowNull="false" unique="false"/>
 
-    <column name="startTime" field="startTime" type="long" length="11" comment="上牌时间"
-            value="0" allowNull="true" unique="false"/>
+    <column name="startTime" field="startTime" type="string" length="10" comment="上牌时间"
+            value="" allowNull="true" unique="false"/>
 
     <column name="city" field="city" type="int" length="10" comment="城市id"
             value="0" allowNull="true" unique="false"/>
