@@ -9,5 +9,8 @@
     <column name="area" field="area" type="int" length="5" comment="区域"
             value="0" allowNull="true" unique="false"/>
 
+    <column name="hot" field="hot" type="int" length="5" comment="是否热门(0否，1是)"
+            value="0" allowNull="true" unique="false"/>
+
     <index name="area" unique="false"/>
 </table>

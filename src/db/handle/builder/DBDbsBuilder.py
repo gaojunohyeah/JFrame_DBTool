@@ -14,7 +14,7 @@ class DBDbsBuilder(BaseBuilder.BaseBuilder):
     def buildDBFile(self):
         try:
             # 渲染模板
-            stream = self.template.render(dbNames=self.tableBean)
+            stream = self.template.render(tableBeans=self.tableBean)
             # print stream
 
             # 生成文件

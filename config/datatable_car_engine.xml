@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="CarEngine" comment="车辆发动机信息表">
+    <column name="id" field="id" type="long" length="20" comment="唯一ID"
+            value="0" allowNull="false" unique="true" iskey="true" autoinc="true"/>
+
+    <column name="name" field="name" type="string" length="30" comment="名称"
+            value="" allowNull="false" unique="false"/>
+
+    <column name="key" field="key" type="string" length="20" comment="型号"
+            value="" allowNull="false" unique="false"/>
+
+    <column name="emission" field="emission" type="double" length="10" comment="排量"
+            value="0" allowNull="true" unique="false"/>
+
+    <column name="emissionType" field="emissionType" type="int" length="2" comment="排放标准"
+            value="0" allowNull="true" unique="false"/>
+
+    <column name="intake" field="intake" type="string" length="20" comment="进气系统"
+            value="" allowNull="true" unique="false"/>
+
+    <column name="maxPs" field="maxPs" type="int" length="10" comment="最大马力"
+            value="0" allowNull="true" unique="false"/>
+
+    <column name="maxRpm" field="maxRpm" type="int" length="10" comment="最大功率转速"
+            value="0" allowNull="true" unique="false"/>
+
+    <column name="fuelGrade" field="fuelGrade" type="string" length="20" comment="燃油标号"
+            value="" allowNull="true" unique="false"/>
+
+    <index name="name" unique="false"/>
+</table>

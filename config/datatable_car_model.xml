@@ -2,16 +2,23 @@
 <table name="CarModel" comment="车辆型号信息表">
     <column name="id" field="id" type="long" length="20" comment="唯一ID"
             value="0" allowNull="false" unique="true" iskey="true" autoinc="true"/>
-    <column name="brandId" field="brandId" type="long" length="20" comment="品牌id"
+
+    <column name="brandSeriesId" field="brandSeriesId" type="long" length="20" comment="品牌系列id"
             value="0" allowNull="false" unique="false"/>
+
     <column name="name" field="name" type="string" length="40" comment="型号名称"
             value="" allowNull="false" unique="false"/>
+
     <column name="carType" field="carType" type="int" length="2" comment="车型"
             value="0" allowNull="true" unique="false"/>
-    <column name="engine" field="engine" type="string" length="30" comment="发动机"
-            value="" allowNull="true" unique="false"/>
 
-    <index name="brandId,carType" unique="false"/>
+    <column name="engineId" field="engineId" type="long" length="20" comment="发动机ID"
+            value="0" allowNull="true" unique="false"/>
+
+    <column name="transmission" field="transmission" type="int" length="2" comment="变速箱(0自动 1手动)"
+            value="0" allowNull="true" unique="false"/>
+
+    <index name="brandSeriesId,carType" unique="false"/>
     <index name="carType" unique="false"/>
     <index name="name" unique="false"/>
 </table>

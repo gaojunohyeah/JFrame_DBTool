@@ -21,16 +21,19 @@
     <column name="modelId" field="modelId" type="long" length="20" comment="车辆型号id"
             value="0" allowNull="false" unique="false"/>
 
-    <column name="price" field="price" type="long" length="20" comment="价格"
+    <column name="price" field="price" type="double" length="20" comment="价格"
             value="0" allowNull="false" unique="false"/>
 
-    <column name="distance" field="distance" type="int" length="10" comment="行驶里程"
+    <column name="distance" field="distance" type="double" length="10" comment="行驶里程"
             value="0" allowNull="false" unique="false"/>
 
     <column name="startTime" field="startTime" type="string" length="10" comment="上牌时间"
             value="" allowNull="true" unique="false"/>
 
-    <column name="city" field="city" type="int" length="10" comment="城市id"
+    <column name="city" field="city" type="long" length="10" comment="城市id"
+            value="0" allowNull="true" unique="false"/>
+
+    <column name="color" field="color" type="int" length="5" comment="颜色"
             value="0" allowNull="true" unique="false"/>
 
     <column name="showImg" field="showImg" type="string" length="200" comment="展示图片"
@@ -42,4 +45,9 @@
     <index name="sellId" unique="false"/>
     <index name="appraiserId" unique="false"/>
     <index name="city,brandId,price" unique="false"/>
+
+    <fk name="sellId" model="UserInfo" type="OneToMany"/>
+    <fk name="appraiserId" model="Appraiser" type="OneToMany"/>
+    <fk name="modelId" model="CarModel" type="OneToMany"/>
+    <fk name="color" model="CarColor" type="OneToMany"/>
 </table>

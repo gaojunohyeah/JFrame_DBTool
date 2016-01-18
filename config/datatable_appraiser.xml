@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<table name="UserInfo" comment="用户信息表">
+<table name="Appraiser" comment="评估师信息表">
     <column name="id" field="id" type="long" length="20" comment="唯一ID"
             value="0" allowNull="false" unique="true" iskey="true" autoinc="true"/>
 
-    <column name="username" field="username" type="string" length="40" comment="用户名"
-            value="" allowNull="false" unique="true"/>
-
-    <column name="email" field="email" type="string" length="40" comment="邮箱"
+    <column name="title" field="title" type="string" length="30" comment="职称"
             value="" allowNull="false" unique="true"/>
 
     <column name="telephone" field="telephone" type="string" length="15" comment="手机号"
             value="0" allowNull="false" unique="true"/>
-
-    <column name="password" field="password" type="string" length="50" comment="密码"
-            value="" allowNull="false" unique="false"/>
 
     <column name="nickname" field="nickname" type="string" length="20" comment="昵称"
             value="" allowNull="true" unique="false"/>
@@ -23,8 +17,4 @@
 
     <column name="state" field="state" type="int" length="30" comment="状态(0未激活,1已激活)"
             value="0" allowNull="true" unique="false"/>
-
-    <index name="username,password" unique="true"/>
-    <index name="email,password" unique="true"/>
-    <index name="telephone,password" unique="true"/>
 </table>

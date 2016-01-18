@@ -14,3 +14,6 @@ class TableBean(object):
 
     def setIndexs(self, indexs):
         self.indexs = indexs
+
+    def setFks(self, fks):
+        self.fks = fks

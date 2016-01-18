@@ -8,8 +8,8 @@
 var Sequelize = require('sequelize');
 var Redis = require('ioredis');
 
-{% for name in dbNames -%}
-var {{ name.lower() }} = require(config.serverRoot + "/model/{{ name }}");
+{% for tableBean in tableBeans -%}
+var {{ tableBean.name.lower() }} = require(config.serverRoot + "/model/{{ tableBean.name }}");
 {% endfor %}
 
 // mysql 连接
@@ -41,6 +41,18 @@ var sequelize = loadMysql();
 exports.sequelize = sequelize;
 
 // model映射
-{% for name in dbNames -%}
-exports.{{ name }} = {{ name.lower() }}.{{ name }}(sequelize);
+{% for tableBean in tableBeans -%}
+exports.{{ tableBean.name }} = {{ tableBean.name.lower() }}.{{ tableBean.name }}(sequelize);
 {% endfor %}
+
+// 关联关系
+{%- for tableBean in tableBeans -%}
+{% for fk in tableBean.fks -%}
+{% if fk.type == "OneToOne" -%}
+exports.{{ fk.model }}.hasOne(exports.{{ tableBean.name }});
+{%- elif fk.type == "OneToMany" %}
+exports.{{ fk.model }}.hasMany(exports.{{ tableBean.name }});
+{%- endif %}
+exports.{{ tableBean.name }}.belongsTo(exports.{{ fk.model }}, {foreignKey: '{{ fk.name }}'});
+{% endfor %}
+{%- endfor %}

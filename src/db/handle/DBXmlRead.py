@@ -25,6 +25,7 @@ def getXmlFileList(xmlPath):
 
     return xmlFiles
 
+
 # 加载字段
 def loadColumnNode(node):
     name = node.getAttribute('name')
@@ -87,6 +88,19 @@ def loadDBFile(path):
         indexs.append(index)
     tableBean.setIndexs(indexs)
     # print indexs
+
+    # 获取表外键节点
+    fks = []
+    # 外键关系
+    childs = root.getElementsByTagName("fk")
+    for child in childs:
+        fname = child.getAttribute('name')
+        fmodel = child.getAttribute('model')
+        ftype = child.getAttribute('type')
+
+        fk = FkBean.FkBean(fname, fmodel, ftype)
+        fks.append(fk)
+    tableBean.setFks(fks)
 
     return tableBean
 

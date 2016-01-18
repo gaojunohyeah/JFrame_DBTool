@@ -19,6 +19,8 @@ function db_init(sequelize) {
         INTEGER({{ column.length }})
         {%- elif 'long' == column.type -%}
         BIGINT({{ column.length }})
+        {%- elif 'double' == column.type -%}
+        DOUBLE({{ column.length }}, 3)
         {%- endif -%},
         allowNull: {{ column.allowNull }},
         unique: {{ column.unique }},
