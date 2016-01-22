@@ -11,4 +11,6 @@
 
     <index name="brandId" unique="false"/>
     <index name="name" unique="false"/>
+
+    <fk name="brandId" model="Brand" type="OneToMany"/>
 </table>

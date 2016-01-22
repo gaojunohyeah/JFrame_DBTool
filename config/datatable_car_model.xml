@@ -21,4 +21,7 @@
     <index name="brandSeriesId,carType" unique="false"/>
     <index name="carType" unique="false"/>
     <index name="name" unique="false"/>
+
+    <fk name="brandSeriesId" model="BrandSeries" type="OneToMany"/>
+    <fk name="engineId" model="CarEngine" type="OneToMany"/>
 </table>

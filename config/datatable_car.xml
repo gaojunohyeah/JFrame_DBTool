@@ -12,7 +12,7 @@
     <column name="appraiserId" field="appraiserId" type="long" length="20" comment="评估师id"
             value="0" allowNull="false" unique="false"/>
 
-    <column name="appraiserDesc" field="sellDesc" type="string" length="300" comment="评估师描述"
+    <column name="appraiserDesc" field="appraiserDesc" type="string" length="300" comment="评估师描述"
             value="" allowNull="true" unique="false"/>
 
     <column name="brandId" field="brandId" type="long" length="20" comment="品牌id"

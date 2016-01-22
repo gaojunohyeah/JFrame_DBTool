@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<table name="CarImg" comment="出售车辆展示图片表">
+    <column name="id" field="id" type="long" length="20" comment="唯一ID"
+            value="0" allowNull="false" unique="true" iskey="true" autoinc="true"/>
+
+    <column name="carId" field="carId" type="long" length="20" comment="出售车辆id"
+            value="0" allowNull="false" unique="false"/>
+
+    <column name="imgName" field="imgName" type="string" length="50" comment="车辆图片名称"
+            value="" allowNull="true" unique="false"/>
+
+    <column name="imgType" field="imgType" type="int" length="10" comment="图片类型"
+            value="0" allowNull="false" unique="false"/>
+
+    <index name="carId" unique="false"/>
+
+    <fk name="carId" model="Car" type="OneToMany"/>
+</table>
