@@ -49,10 +49,10 @@ exports.{{ tableBean.name }} = {{ tableBean.name.lower() }}.{{ tableBean.name }}
 {%- for tableBean in tableBeans -%}
 {% for fk in tableBean.fks -%}
 {% if fk.type == "OneToOne" -%}
-exports.{{ fk.model }}.hasOne(exports.{{ tableBean.name }}, {foreignKey: '{{ fk.name }}'});
+exports.{{ fk.model }}.hasOne(exports.{{ tableBean.name }}, {foreignKey: '{{ fk.name }}', constraints: false});
 {%- elif fk.type == "OneToMany" %}
-exports.{{ fk.model }}.hasMany(exports.{{ tableBean.name }}, {foreignKey: '{{ fk.name }}'});
+exports.{{ fk.model }}.hasMany(exports.{{ tableBean.name }}, {foreignKey: '{{ fk.name }}', constraints: false});
 {%- endif %}
-exports.{{ tableBean.name }}.belongsTo(exports.{{ fk.model }}, {foreignKey: '{{ fk.name }}'});
+exports.{{ tableBean.name }}.belongsTo(exports.{{ fk.model }}, {foreignKey: '{{ fk.name }}', constraints: false});
 {% endfor %}
 {%- endfor %}
